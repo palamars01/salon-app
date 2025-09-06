@@ -1,0 +1,43 @@
+.container {
+  display: flex;
+  flex-direction: column;
+  height: 100%;
+  padding: 20px 16px;
+  background-color: rgba(52, 92, 42, 0.8);
+
+  .requests {
+    color: #ffffff;
+    margin-top: 1rem;
+  }
+
+  .actions {
+    display: flex;
+    flex-direction: column;
+    gap: 24px;
+    margin-top: auto;
+
+    & {
+      button {
+        border-radius: 8px;
+        height: 44px;
+        text-transform: none;
+      }
+      a {
+        text-transform: none;
+        text-decoration: none;
+      }
+    }
+  }
+}
+@media screen and (min-width: 980px) {
+  .container {
+    padding-top: 10px;
+    padding-bottom: 0;
+    .widgets {
+      gap: 10px;
+    }
+    .actions {
+      margin-top: 15px;
+    }
+  }
+}

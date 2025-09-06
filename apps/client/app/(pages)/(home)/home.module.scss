@@ -1,0 +1,32 @@
+.container {
+  padding: 79px 28px 10px 28px;
+}
+.dotsWrapper {
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  justify-content: center;
+  padding: 0;
+  gap: 8px;
+  margin: 0;
+  margin-top: 62px;
+
+  li {
+    width: 8px;
+    height: 8px;
+    margin: 0;
+  }
+}
+
+.dots {
+  width: 8px;
+  height: 8px;
+  border-radius: 50%;
+  background-color: rgba(52, 92, 42, 0.2);
+}
+
+@media screen and (min-width: 720px) {
+  .container {
+    padding-top: 5px;
+  }
+}

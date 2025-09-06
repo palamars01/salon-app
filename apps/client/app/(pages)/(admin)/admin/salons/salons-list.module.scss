@@ -1,0 +1,20 @@
+.container {
+  height: 100%;
+  padding: 1rem 1rem 55.5px 1rem;
+  color: var(--secondary-color);
+
+  .requests {
+    margin-bottom: 28px;
+    div:not(:first-child) p {
+      border-color: rgba(50, 89, 40, 0.3);
+
+      color: #000000;
+    }
+    svg {
+      fill: var(--secondary-color);
+      path {
+        stroke: var(--secondary-color);
+      }
+    }
+  }
+}

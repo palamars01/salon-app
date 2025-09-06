@@ -1,0 +1,66 @@
+.container {
+  padding: 10px 16px;
+  background-color: #d3e2d1;
+  border-radius: 8px;
+  width: 100%;
+  p {
+    font-size: 14px;
+    font-weight: 500;
+    line-height: 18px;
+    color: var(--secondary-color);
+  }
+  .privateWorker {
+    width: 100%;
+    text-align: center;
+    font-size: 16px;
+    font-weight: 400;
+  }
+  .header {
+    margin-top: 10px;
+    p {
+      color: var(--secondary-color);
+    }
+    .name {
+      font-size: 16px;
+      text-transform: uppercase;
+    }
+    .location {
+      font-size: 12px;
+      margin-top: 9px;
+    }
+  }
+  .services {
+    padding: 12px 0px;
+    margin: 12px 0px 14px 0px;
+    border: 1px solid color-mix(in srgb, var(--primary-color) 30%, transparent);
+    border-left: none;
+    border-right: none;
+
+    p {
+      color: #000;
+    }
+  }
+
+  .waitTime {
+    display: flex;
+    justify-content: space-between;
+    p {
+      font-size: 14px;
+      font-weight: 500;
+      line-height: 18px;
+    }
+    svg {
+      width: 13px;
+      height: 15px;
+      path {
+        fill: var(--secondary-color);
+      }
+    }
+  }
+  .actions {
+    margin-top: 17px;
+    button {
+      background-color: var(--secondary-color);
+    }
+  }
+}

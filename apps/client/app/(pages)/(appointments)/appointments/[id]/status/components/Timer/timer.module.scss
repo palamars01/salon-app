@@ -1,0 +1,63 @@
+.circle {
+  position: relative;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  margin: 25px auto 0 auto;
+  width: fit-content;
+  svg {
+    width: calc((8em + 15px + 1vw) * 2);
+    height: calc((8em + 15px + 1vw) * 2);
+    transform: rotate(270deg);
+
+    & circle {
+      cx: calc(8em + 1vw);
+      cy: calc(8em + 1vw);
+      r: calc(8em + 1vw);
+      fill: transparent;
+      stroke-width: 1;
+      stroke: var(--primary-color);
+      transform: translate(15px, 15px);
+      stroke-linecap: round;
+    }
+
+    & circle:nth-child(2) {
+      stroke-width: 15;
+      stroke: var(--primary-color);
+      stroke-dasharray: 900;
+      stroke-dashoffset: 900;
+    }
+  }
+  .time {
+    position: absolute;
+    width: 100%;
+    p {
+      font-size: 32px;
+      font-weight: 700;
+      text-align: center;
+    }
+  }
+  .pointer {
+    position: absolute;
+    width: 100%;
+    height: 100%;
+    border-radius: 50%;
+    display: flex;
+    justify-content: center;
+    align-items: flex-start;
+    z-index: 1000;
+  }
+  .pointer::before {
+    content: '';
+    position: absolute;
+    top: 0px;
+    width: 35px;
+    height: 35px;
+    background: var(--primary-color);
+    border-radius: 50%;
+    box-shadow:
+      0 0 20px var(--primary-color),
+      0 0 60px var(--primary-color);
+  }
+}

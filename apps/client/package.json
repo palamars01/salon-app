@@ -1,0 +1,49 @@
+{
+  "name": "client",
+  "version": "0.1.0",
+  "type": "module",
+  "private": true,
+  "scripts": {
+    "dev": "export APP_ENV=development && next dev --turbopack",
+    "dev:win": "set APP_ENV=development&&next dev --turbopack",
+    "build": "next build",
+    "start": "next start",
+    "start:dev:win": "next start",
+    "format": "prettier --write \"src/**/*.ts\" \"test/**/*.ts\"",
+    "lint": "eslint --max-warnings 10",
+    "check:types": "bash -c \"tsc --project tsconfig.json --noEmit\""
+  },
+  "dependencies": {
+    "@emotion/cache": "^11.14.0",
+    "@emotion/react": "^11.14.0",
+    "@emotion/styled": "^11.14.0",
+    "@mui/material": "^6.4.2",
+    "@mui/material-nextjs": "^6.4.2",
+    "@next/env": "^15.1.7",
+    "@repo/shared": "*",
+    "@types/react-slick": "^0.23.13",
+    "add": "^2.0.6",
+    "jose": "^5.9.6",
+    "next": "^15.1.0",
+    "react": "^19.0.0",
+    "react-dom": "^19.0.0",
+    "react-international-phone": "^4.5.0",
+    "react-slick": "^0.30.3",
+    "react-toastify": "^11.0.3",
+    "slick-carousel": "^1.8.1",
+    "socket.io-client": "^4.8.1"
+  },
+  "devDependencies": {
+    "@babel/eslint-parser": "^7.26.5",
+    "@next/eslint-plugin-next": "^15.1.0",
+    "@repo/typescript-config": "*",
+    "@types/node": "^22.10.10",
+    "@types/react": "19.0.1",
+    "@types/react-dom": "19.0.2",
+    "@typescript-eslint/eslint-plugin": "^8.26.0",
+    "eslint": "8.57.1",
+    "eslint-config-next": "^15.1.6",
+    "sass": "^1.83.4",
+    "typescript": "5.7.2"
+  }
+}

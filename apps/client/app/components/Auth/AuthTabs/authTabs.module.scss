@@ -1,0 +1,39 @@
+.container {
+  display: flex;
+  flex-direction: column;
+  width: 100%;
+  flex-grow: 1;
+  margin-top: 20px;
+
+  & > [role='tabpanel'] {
+    padding-top: 33px;
+    height: 100%;
+    @media (width >=980px) {
+      padding-top: 14px;
+    }
+  }
+  &:global(.MuiTabs-indicator) {
+    height: 7px;
+  }
+  .authTabs {
+    border-bottom: 1px solid #0000004d;
+    .tab {
+      color: #0000004d;
+      font-size: 16px;
+      font-weight: 500;
+      line-height: 24px;
+      &:global(.Mui-selected) {
+        color: var(--secondary-color);
+      }
+      text-transform: none;
+    }
+  }
+
+  //   Tab Indicator
+  & > div > div > span {
+    height: 4;
+    border-top-left-radius: 8;
+    border-top-right-radius: 8;
+    background-color: var(--secondary-color);
+  }
+}

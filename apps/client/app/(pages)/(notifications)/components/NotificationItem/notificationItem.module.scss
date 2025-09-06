@@ -1,0 +1,32 @@
+.container {
+  color: #898989;
+  padding: 8px 18px;
+  border-radius: 8px;
+
+  .title {
+    font-size: 16px;
+    font-weight: 500;
+    line-height: 23px;
+    color: #121212;
+  }
+  .description {
+    font-size: 12px;
+    font-weight: 400;
+    line-height: 18px;
+    margin-top: 5px;
+  }
+  .timePassed {
+    font-size: 12px;
+    font-weight: 400;
+    line-height: 18px;
+    margin-top: 5px;
+  }
+}
+
+.unread {
+  background-color: var(--primary-color);
+  color: #fff;
+  .title {
+    color: inherit;
+  }
+}

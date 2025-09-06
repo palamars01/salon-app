@@ -1,0 +1,42 @@
+.item {
+  display: flex;
+  flex-direction: column;
+  background-color: var(--primary-color);
+  border-radius: 8px;
+  color: #ffffff;
+  padding: 8px;
+  height: 100%;
+
+  .icon {
+    display: block;
+    margin-left: auto;
+    a {
+      padding: 0;
+    }
+    & svg {
+      display: block;
+    }
+  }
+  .title {
+    font-size: 16px;
+    font-weight: 600;
+    line-height: 20px;
+    width: 100%;
+    text-align: center;
+  }
+  .content {
+    display: flex;
+    width: 100%;
+    align-items: center;
+    justify-content: center;
+    flex-direction: row;
+    gap: 5px;
+    margin-top: 11px;
+
+    .contentIcon {
+      & svg {
+        display: block;
+      }
+    }
+  }
+}

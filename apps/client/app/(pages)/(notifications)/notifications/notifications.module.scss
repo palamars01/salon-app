@@ -1,0 +1,12 @@
+.container {
+  padding: 25px 15px;
+  & > div {
+    color: var(--secondary-color);
+  }
+  .list {
+    display: flex;
+    flex-direction: column;
+    margin-top: 15px;
+    gap: 15px;
+  }
+}

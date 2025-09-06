@@ -1,0 +1,49 @@
+{
+  "extends": "@repo/typescript-config/nextjs.json",
+  "compilerOptions": {
+    "plugins": [
+      {
+        "name": "next"
+      }
+    ],
+    "target": "ES2017",
+    "jsx": "preserve",
+    "skipLibCheck": true,
+    "esModuleInterop": true,
+    "outDir": ".next",
+    "baseUrl": ".",
+    "rootDir": "./",
+    "paths": {
+      "@/*": [
+        "./app/*"
+      ],
+      "@lib/*": [
+        "./app/lib/*"
+      ],
+      "@components/*": [
+        "./app/components/*"
+      ],
+      "@salon/*": [
+        "./app/(pages)/(salon)/salon/*"
+      ],
+      "@styles/*": [
+        "./app/scss/*"
+      ]
+    },
+    "types": [
+      "node"
+    ],
+    "resolveJsonModule": true
+  },
+  "exclude": [
+    "node_modules",
+    ".next",
+    ".turbo"
+  ],
+  "include": [
+    "next-env.d.ts",
+    "./app/**/*",
+    ".next/types/**/*.ts",
+    "./middleware.ts"
+  ]
+}

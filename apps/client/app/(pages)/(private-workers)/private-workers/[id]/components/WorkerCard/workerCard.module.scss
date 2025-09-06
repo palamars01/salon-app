@@ -1,0 +1,23 @@
+.container {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  background-color: rgba(211, 226, 209, 1);
+  padding: 10px 16px;
+  color: #000;
+  border-radius: 8px;
+  width: 100%;
+
+  .button {
+    width: 150px;
+    button {
+      font-size: 14px;
+    }
+  }
+}
+
+@media screen and (min-width: 980px) {
+  .container {
+    width: 100%;
+  }
+}

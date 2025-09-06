@@ -1,0 +1,35 @@
+{
+  "name": "salon-app",
+  "private": true,
+  "scripts": {
+    "start": "turbo start",
+    "build": "turbo build",
+    "dev": "turbo dev",
+    "dev:win": "turbo dev:win",
+    "lint": "turbo lint",
+    "start:dev:win": "turbo start:dev:win",
+    "format": "prettier --write \"**/*.{ts,tsx,md}\"",
+    "check:types": "turbo check:types",
+    "prepare": "husky",
+    "dev:client": "turbo run dev --filter=client",
+    "dev:server": "turbo run dev --filter=server",
+    "docker:build:client": "docker build -t salon/frontend:latest -f ./apps/client/Dockerfile .",
+    "docker:build:server": "docker build -t salon/backend:latest -f ./apps/server/Dockerfile .",
+    "e2e": "cd playwright && npx playwright test"
+  },
+  "devDependencies": {
+    "husky": "^9.1.7",
+    "lint-staged": "^15.4.3",
+    "prettier": "^3.4.2",
+    "turbo": "^2.3.3",
+    "typescript": "5.7.2"
+  },
+  "workspaces": [
+    "apps/*",
+    "packages/*"
+  ],
+  "packageManager": "yarn@1.22.19",
+  "engines": {
+    "node": ">=20"
+  }
+}

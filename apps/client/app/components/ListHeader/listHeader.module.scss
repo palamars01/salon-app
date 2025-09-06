@@ -1,0 +1,19 @@
+.container {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  width: 100%;
+
+  .title {
+    font-size: 16px;
+    font-weight: 600;
+    color: inherit;
+    line-height: 1;
+  }
+  .viewAll {
+    font-size: 10px;
+    font-weight: 600;
+    color: inherit;
+    padding: 0;
+  }
+}

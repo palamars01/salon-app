@@ -1,0 +1,72 @@
+name: Preview Deploy For Testing
+
+on:
+  push:
+    branches: [main]
+  # pull_request:
+  #   branches: [master]
+
+jobs:
+  deploy-for-testing:
+    runs-on: ubuntu-latest
+    outputs:
+      client_changed: ${{  contains(steps.changed-files.outputs.all_changed_files,'client')}}
+      server_changed: ${{  contains(steps.changed-files.outputs.all_changed_files,'server')}}
+    steps:
+      - name: Checkout changed files
+        uses: actions/checkout@v4
+
+      - name: Get changed files in the client folder
+        id: changed-files
+        uses: tj-actions/changed-files@v45
+        with:
+          files: apps/**/*.{ts,tsx}
+
+      - name: Deploy for testing client
+        id: deploy-client
+        # if: contains(steps.changed-files.outputs.all_changed_files,'client')
+        uses: JorgeLNJunior/render-deploy@v1.4.5
+        with:
+          service_id: ${{ secrets.RENDER_FRONTEND_SERVICE_ID }}
+          api_key: ${{ secrets.RENDER_API_KEY }}
+          wait_deploy: true
+
+      - name: Deploy for testing server
+        # if: contains(steps.changed-files.outputs.all_changed_files,'server')
+        uses: JorgeLNJunior/render-deploy@v1.4.5
+        with:
+          service_id: ${{ secrets.RENDER_BACKEND_SERVICE_ID }}
+          api_key: ${{ secrets.RENDER_API_KEY }}
+          wait_deploy: true
+
+  testing:
+    needs: deploy-for-testing
+    if: needs.deploy-for-testing.outputs.server_changed == 'true' || needs.deploy-for-testing.outputs.client_changed == 'true'
+    timeout-minutes: 60
+    runs-on: ubuntu-latest
+    defaults:
+      run:
+        working-directory: playwright
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-node@v4
+        with:
+          node-version: "20"
+      - name: Install dependencies
+        run: yarn install --frozen-lockfile
+      - name: Install Playwright
+        run: npx playwright install --with-deps
+      - name: Run Playwright tests (Chromium only, iPhone emulation)
+        run: npx playwright test
+      - name: Upload Playwright artifacts
+        uses: actions/upload-artifact@v4
+        if: always()
+        with:
+          name: playwright-screenshots
+          path: ./playwright/playwright-screenshots/
+      - uses: actions/upload-artifact@v4
+        if: ${{ !cancelled() }}
+        with:
+          name: playwright-report
+          path: ./playwright/playwright-report/
+          retention-days: 30

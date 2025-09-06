@@ -1,0 +1,56 @@
+.container {
+  width: 100%;
+  .label {
+    font-size: 1rem;
+    color: var(--text-primary-color);
+    margin: 0 0 14px 0;
+  }
+  .wrapper {
+    border: 0.8px solid #e3e3e7;
+    background-color: #f2f2f3;
+    border-radius: 8px;
+    height: 44px;
+    overflow: hidden;
+
+    &:focus-within {
+      border: 0.8px solid transparent;
+      background:
+        linear-gradient(var(--primary-color), var(--primary-color)) padding-box,
+        linear-gradient(to right, var(--secondary-color), var(--primary-color))
+          border-box;
+
+      & path {
+        fill: #ffffff;
+        fill-opacity: 1;
+      }
+    }
+
+    input {
+      height: 44px;
+
+      padding: 0;
+      margin: 0;
+      color: #7d7f884d;
+      padding-left: 12;
+
+      &:focus {
+        color: #ffffff;
+        outline: none;
+
+        background-color: var(--primary-color);
+        &::placeholder {
+          color: #ffffff;
+        }
+      }
+      &::placeholder {
+        color: rgba(0, 0, 0, 0.5);
+      }
+    }
+    fieldset {
+      border: none;
+    }
+  }
+  .error {
+    border: 0.8px solid #ee4006;
+  }
+}

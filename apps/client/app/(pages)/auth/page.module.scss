@@ -1,0 +1,60 @@
+.container {
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  padding: 70px 16px 50px 16px;
+  height: 100vh;
+  .titleWrapper {
+    .title {
+      font-size: 24px;
+      font-weight: 700;
+      color: var(--secondary-color);
+    }
+  }
+
+  .actionsWrapper {
+    margin-top: 80px;
+    display: flex;
+    flex-direction: column;
+    gap: 14px;
+    .button {
+      color: #000000;
+      font-size: 14px;
+      text-transform: none;
+      font-weight: 600;
+      line-height: 24px;
+      margin-left: 16px;
+    }
+    .accountButton {
+      @extend .button;
+      color: #ffffff;
+    }
+  }
+  .termsWrapper {
+    margin-top: 154px;
+    .terms {
+      color: rgba(0, 0, 0, 0.3);
+      font-size: 14px;
+      font-weight: 500;
+      letter-spacing: 0.5px;
+      line-height: 140%;
+      & a {
+        color: var(--primary-color);
+        font-weight: 600;
+      }
+    }
+  }
+  .signinLink {
+    font-size: 16px;
+    font-weight: 500;
+    color: #000000;
+    text-align: center;
+    margin-top: 38px;
+
+    & a {
+      color: var(--primary-color);
+      font-weight: 700;
+      text-decoration: none;
+    }
+  }
+}

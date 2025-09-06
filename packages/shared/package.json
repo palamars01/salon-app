@@ -1,0 +1,53 @@
+{
+  "name": "@repo/shared",
+  "version": "1.0.0",
+  "description": "",
+  "scripts": {
+    "dev": "tsc --watch",
+    "dev:win": "tsc --watch",
+    "build": "tsc"
+  },
+  "exports": {
+    "./enums": {
+      "import": "./enums/index.js",
+      "require": "./enums/index.js",
+      "types": "./enums/index.d.ts"
+    },
+    "./interfaces/auth": {
+      "types": "./interfaces/auth/index.d.ts"
+    },
+    "./interfaces/jwt": {
+      "types": "./interfaces/jwt/index.d.ts"
+    },
+    "./interfaces/user": {
+      "types": "./interfaces/user/index.d.ts"
+    },
+    "./interfaces/salon": {
+      "types": "./interfaces/salon/index.d.ts"
+    },
+    "./interfaces/salon/privateWorker": {
+      "types": "./interfaces/salon/privateWorker/index.d.ts"
+    },
+    "./interfaces/salon/service": {
+      "types": "./interfaces/salon/service/index.d.ts"
+    },
+    "./interfaces/appointment": {
+      "types": "./interfaces/appointment/index.d.ts"
+    },
+    "./interfaces/notification": {
+      "import": "./interfaces/notification/index.js",
+      "require": "./interfaces/notification/index.js",
+      "types": "./interfaces/notification/index.d.ts"
+    }
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "devDependencies": {
+    "@types/node": "^22.10.10",
+    "typescript": "^5.7.3"
+  },
+  "dependencies": {
+    "mongoose": "^8.8.4"
+  }
+}

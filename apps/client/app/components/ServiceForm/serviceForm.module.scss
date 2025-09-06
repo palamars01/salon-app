@@ -1,0 +1,21 @@
+.form {
+  height: 100%;
+  display: flex;
+  flex-direction: column;
+  gap: 15px;
+  padding: 20px 16px 0px 16px;
+  .selectWrapper {
+    & div select {
+      padding-left: 14px;
+    }
+  }
+  .dayPickerWrapper {
+    .label {
+      color: var(--text-primary-color);
+      font-size: 16px;
+    }
+  }
+  .submitButton {
+    margin-top: auto;
+  }
+}

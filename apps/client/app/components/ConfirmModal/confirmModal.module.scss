@@ -1,0 +1,39 @@
+.modal {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+.container {
+  background-color: #f8f2ec;
+  width: 100%;
+  max-width: 350px;
+  padding: 17px;
+  border-radius: 8px;
+  .title {
+    font-size: 20px;
+    text-align: center;
+    color: var(--secondary-color);
+    line-height: 30px;
+    font-weight: 500;
+  }
+  .content {
+    font-size: 14px;
+    font-weight: 400;
+    color: #ababab;
+    text-align: center;
+  }
+  .actions {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    margin-top: 24px;
+    gap: 20px;
+    button {
+      font-size: 16px;
+      font-weight: 400;
+    }
+    a {
+      font-weight: 400;
+    }
+  }
+}

@@ -1,0 +1,82 @@
+.container {
+  display: flex;
+  flex-direction: column;
+  background-color: #335a29;
+  align-items: center;
+  height: 100%;
+  .content {
+    width: 100%;
+    padding: 20px 15px;
+    color: #f8f2ec;
+    .title {
+      font-size: 20px;
+      line-height: 40px;
+      font-weight: 500;
+      text-align: center;
+    }
+    .name {
+      font-size: 14px;
+      width: 100%;
+      text-align: center;
+      line-height: 40px;
+      font-weight: 500;
+    }
+    .icons {
+      display: flex;
+      width: 100%;
+      justify-content: flex-end;
+      gap: 18px;
+      align-items: center;
+      div,
+      a {
+        padding: 0;
+      }
+      & > a {
+        z-index: 0;
+      }
+    }
+  }
+  .appointment {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    border-top-left-radius: 20px;
+    border-top-right-radius: 20px;
+    width: 100%;
+    background-color: #d3e2d1;
+    padding: 20px 15px 53px 15px;
+    gap: 20px;
+    margin-top: auto;
+    .entryTime {
+      .title {
+        font-size: 20px;
+        color: var(--primary-color);
+        line-height: 40px;
+        font-weight: 500;
+      }
+      .time {
+        font-size: 14px;
+        color: #464646;
+        line-height: 40px;
+        font-weight: 500;
+        width: 100%;
+        text-align: center;
+      }
+    }
+    .waitTime {
+      .title {
+        font-size: 20px;
+        color: var(--primary-color);
+        line-height: 40px;
+        font-weight: 500;
+      }
+      .time {
+        font-size: 14px;
+        line-height: 40px;
+        font-weight: 500;
+        color: #464646;
+        text-align: center;
+      }
+    }
+  }
+}

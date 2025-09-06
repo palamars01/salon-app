@@ -1,0 +1,10 @@
+.container {
+  height: 100%;
+  padding: 21px 0px 41px 0px;
+
+  & > button {
+    position: absolute;
+    top: 37px;
+    left: 1rem;
+  }
+}

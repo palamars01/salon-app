@@ -1,0 +1,53 @@
+.container {
+  display: flex;
+  gap: 16px;
+  .country-selector {
+    height: 44px;
+    width: 100%;
+    display: flex;
+    position: relative;
+    flex-direction: row;
+    align-items: center;
+    width: fit-content;
+    padding: 0px 12px;
+    border: 0.8px solid #e3e3e7;
+    border-radius: 8px;
+    background-color: #f2f2f3;
+
+    &.open {
+      background:
+        linear-gradient(var(--primary-color), var(--primary-color)) padding-box,
+        linear-gradient(to right, var(--secondary-color), var(--primary-color))
+          border-box;
+    }
+    div {
+      border: none;
+      width: fit-content;
+      font-size: 14px;
+      padding: 0 0 0 4px;
+      background-color: transparent;
+      color: #7d7f884d;
+      &.open {
+        color: #ffffff;
+      }
+    }
+    ul {
+      position: absolute;
+      outline: none;
+    }
+    .chevron-icon {
+      width: 19px;
+      height: 19px;
+      cursor: pointer;
+      svg path {
+        fill: #7d7f884d;
+      }
+      &.open {
+        transform: rotateX(180deg);
+        svg path {
+          fill: #ffffff;
+        }
+      }
+    }
+  }
+}

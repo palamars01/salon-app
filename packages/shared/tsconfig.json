@@ -1,0 +1,15 @@
+{
+  "compilerOptions": {
+    "target": "ES5",
+    "outDir": ".",
+    "module": "CommonJS",
+    "rootDir": "./",
+    "declaration": true,
+    "allowJs": true,
+    "strict": true,
+    "lib": ["es2015", "dom"],
+    "baseUrl": "./"
+  },
+  "exclude": ["node_modules", "dist", "test/**/*", "*.spec.ts"],
+  "references": []
+}

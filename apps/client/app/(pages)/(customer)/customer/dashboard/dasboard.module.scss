@@ -1,0 +1,43 @@
+.container {
+  display: flex;
+  flex-direction: column;
+  background-color: var(--secondary-color);
+  height: 100%;
+  padding: 20px;
+  .content {
+    p {
+      color: #f8f2ec;
+      text-align: center;
+      font-size: 14px;
+      font-weight: 500;
+      line-height: 22px;
+      &:first-child {
+        font-size: 20px;
+        line-height: 40px;
+        span {
+          width: 30px;
+          height: 36px;
+        }
+      }
+    }
+  }
+
+  .actions {
+    display: flex;
+    flex-direction: column;
+    gap: 24px;
+    margin-top: auto;
+
+    & {
+      button {
+        border-radius: 8px;
+        height: 44px;
+        text-transform: none;
+      }
+      a {
+        text-transform: none;
+        text-decoration: none;
+      }
+    }
+  }
+}

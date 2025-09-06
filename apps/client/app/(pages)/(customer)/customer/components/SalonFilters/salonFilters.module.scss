@@ -1,0 +1,32 @@
+.container {
+  padding: 16px 12px;
+  overflow: hidden;
+  background-color: #f8f2ec;
+  .title {
+    font-size: 20px;
+    text-align: center;
+    font-weight: 500;
+    color: var(--secondary-color);
+  }
+
+  .wrapper {
+    margin-top: 23px;
+    overflow: hidden;
+    .waitTime {
+      display: flex;
+      flex-direction: row;
+      gap: 15px;
+      margin-top: 10px;
+    }
+
+    .filterTitle {
+      font-size: 18px;
+    }
+  }
+  .action {
+    margin-top: 23px;
+    display: flex;
+    flex-direction: column;
+    gap: 8px;
+  }
+}

@@ -1,0 +1,74 @@
+.container {
+  display: flex;
+  flex-direction: column;
+  gap: 14px;
+
+  .label {
+    color: var(--text-primary-color);
+    font-size: 16px;
+  }
+  .wrapper {
+    width: 100%;
+    position: relative;
+    &:focus-within {
+      & path {
+        fill: #ffffff;
+        fill-opacity: 1;
+      }
+    }
+    .accountIconWrapper {
+      position: absolute;
+      top: 10px;
+      left: 14px;
+      width: 24px;
+      height: 24px;
+      z-index: 999;
+    }
+    .arrowIconWrapper {
+      position: absolute;
+      display: block;
+      width: 11px;
+      height: 6px;
+      top: 19px;
+      right: 16px;
+      z-index: 999;
+      svg {
+        display: block;
+      }
+    }
+    select {
+      position: relative;
+      height: 44px;
+      width: 100%;
+      outline: none;
+      border: 0.8px solid #e3e3e7;
+      border-radius: 8px;
+      background-color: #f2f2f3;
+      color: #7d7f884d;
+      padding: 0 46px;
+      font-size: 16px;
+      -moz-appearance: none; /* Firefox */
+      -webkit-appearance: none; /* Safari and Chrome */
+      appearance: none;
+      option {
+        font-size: 16px;
+      }
+      &.error {
+        border: 0.8px solid #ee4006;
+      }
+      &:focus {
+        color: #ffffff;
+        background:
+          linear-gradient(var(--primary-color), var(--primary-color))
+            padding-box,
+          linear-gradient(
+              to right,
+              var(--secondary-color),
+              var(--primary-color)
+            )
+            border-box;
+        background-color: var(--primary-color);
+      }
+    }
+  }
+}
