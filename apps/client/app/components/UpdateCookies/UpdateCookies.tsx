@@ -8,8 +8,6 @@ interface Props {
 }
 export default function UpdateCookies({ jwtTokens }: Props) {
   useEffect(() => {
-    console.log('update cookies');
-
     if (jwtTokens) {
       updateSessionWithTokens(jwtTokens).then(() => {});
     }
