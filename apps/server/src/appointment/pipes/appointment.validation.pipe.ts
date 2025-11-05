@@ -24,7 +24,7 @@ export class AppointmentValidationPipe implements PipeTransform {
     ).match(phoneNumberValidation[appointmentDto.country!].regExp);
 
     if (!isPhoneNumberValid) {
-      phoneNumberValidationError = 'Phone number format is not valid';
+      phoneNumberValidationError = 'Phone number format is not valid!';
     }
 
     const appointmentDTO = plainToInstance(AppointmentDTO, appointmentDto);

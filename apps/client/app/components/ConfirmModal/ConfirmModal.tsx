@@ -43,7 +43,6 @@ export function ConfirmModal({
   appointmentData,
   handleChangeUserAppointmentData,
   isFNameExists,
-  //   country,
 }: Props) {
   const title =
     type === 'appointmentCreate'

@@ -16,9 +16,17 @@ import styles from './actions.module.scss';
 
 interface Props {
   appointmentId: string;
+  userData: {
+    fName?: string;
+    phone?: {
+      dialCode: string;
+      number: string;
+    };
+    country?: string;
+  };
 }
 
-export function Actions({ appointmentId }: Props) {
+export function Actions({ appointmentId, userData }: Props) {
   const [openConfirmModal, setOpenConfirmModal] = useState(false);
 
   const handleOpenConfirmModal = () => setOpenConfirmModal(true);
@@ -41,6 +49,8 @@ export function Actions({ appointmentId }: Props) {
         open={openConfirmModal}
         handleSubmit={handleDeleteAppointment}
         handleClose={() => setOpenConfirmModal(false)}
+        userData={userData}
+        appointmentData={{ phone: userData.phone }}
       />
       <MainButton
         title="Leave Queue"

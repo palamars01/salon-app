@@ -24,7 +24,9 @@ interface Props {
 }
 
 export default async function AppointmentStatus({ params }: Props) {
-  await checkRolePermission([RolesEnum.customer]);
+  const { fName, phone, country } = await checkRolePermission([
+    RolesEnum.customer,
+  ]);
 
   const { id } = await params;
   const { data, errors } = await getStatusData(id);
@@ -66,7 +68,7 @@ export default async function AppointmentStatus({ params }: Props) {
             {data.appointment.waitTimeInMinutes} mins
           </Typography>
         </Box>
-        <Actions appointmentId={id} />
+        <Actions appointmentId={id} userData={{ fName, phone, country }} />
       </Box>
     </Box>
   );
