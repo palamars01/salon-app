@@ -55,6 +55,7 @@ const createJwtPayload = function () {
   if (user.privateWorkerId) payload.privateWorkerId = user.privateWorkerId;
   if (user.fName) payload.fName = user.fName;
   if (user.lName) payload.lName = user.lName;
+  if (user.country) payload.country = user.country;
 
   return payload;
 };
@@ -67,6 +68,7 @@ const toPublic = function (): PublicUser {
   }
   user._id && delete user._id;
   user.tempPassword = !!user.tempPassword;
+  user.phone = user.phone?.dialCode + user.phone?.number;
   delete user.password;
   delete user.__v;
 

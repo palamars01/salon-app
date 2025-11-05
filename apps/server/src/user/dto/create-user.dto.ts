@@ -1,7 +1,7 @@
-import { Signup, SignupRole } from '@repo/shared/interfaces/auth';
+import { SignupRole } from '@repo/shared/interfaces/auth';
 import { AuthProvidersEnum } from '@repo/shared/enums';
 
-export class CreateUserDTO implements Signup {
+export class CreateUserDTO {
   authProvider: AuthProvidersEnum;
 
   authValue: string;
@@ -10,4 +10,9 @@ export class CreateUserDTO implements Signup {
   role?: SignupRole;
   fName?: string | undefined;
   lName?: string | undefined;
+  phone?: {
+    dialCode: string;
+    number: string;
+  };
+  country?: string;
 }

@@ -1,6 +1,6 @@
 'use client';
 
-import { useState } from 'react';
+import { ChangeEvent, useState } from 'react';
 import { Box } from '@mui/material';
 
 import {
@@ -19,12 +19,22 @@ interface Country {
   iso2: string;
 }
 
-export function PhoneInput() {
+interface Props {
+  phone?: {
+    dialCode: string;
+    number: string;
+  };
+  country?: string;
+}
+
+export function PhoneInput({ phone, country }: Props) {
   const [{ dialCode, iso2 }, setCountry] = useState<Country>({
-    dialCode: '1',
-    iso2: 'us',
+    dialCode: phone?.dialCode || '1',
+    iso2: country || 'us',
   });
   const [showCountryList, setShowCountryList] = useState(false);
+
+  const [phoneNumberValue, setPhoneNumberValue] = useState(phone?.number || '');
 
   const handleCountrySelect = ({ dialCode, iso2 }: Country) => {
     setCountry({ dialCode, iso2 });
@@ -33,6 +43,10 @@ export function PhoneInput() {
 
   const toggleCountryList = (): void => {
     setShowCountryList(!showCountryList);
+  };
+
+  const handlePhoneNumberChange = (e: ChangeEvent<HTMLInputElement>) => {
+    setPhoneNumberValue(e.target.value);
   };
 
   return (
@@ -55,6 +69,12 @@ export function PhoneInput() {
           show={showCountryList}
           selectedCountry={iso2}
           onSelect={handleCountrySelect}
+          countries={[
+            ['', 'us', '1'],
+            ['', 'de', '49'],
+            ['', 'dk', '45'],
+          ]}
+          dialCodePrefix="+"
         />
         <Box
           className={`${styles['chevron-icon']} ${showCountryList ? styles.open : ''}`}
@@ -65,6 +85,7 @@ export function PhoneInput() {
       </Box>
       <BaseTextInput
         type="text"
+        value={phoneNumberValue}
         inputProps={{
           name: 'authValue',
           placeholder: 'Enter phone',
@@ -72,10 +93,12 @@ export function PhoneInput() {
           minLength: 9,
           required: true,
           id: 'phone',
+          onChange: handlePhoneNumberChange,
         }}
       />
       <input type="hidden" name="authProvider" value="phone" />
       <input type="hidden" name="dialCode" value={dialCode} />
+      <input type="hidden" name="country" value={iso2} />
     </Box>
   );
 }

@@ -75,23 +75,23 @@ export class SalonService {
     );
 
     /* Filter appointments by status */
-    const firstApprovedRequest = appointments.find(
+    const firstRequest = appointments.find(
       (a) => a.status === AppointmentStatusEnum.approved,
     );
 
-    if (firstApprovedRequest) {
+    if (firstRequest) {
       /* Populate customer */
-      const appointment = await firstApprovedRequest.populate<{
+      const appointment = await firstRequest.populate<{
         customer: User;
       }>('customer');
 
-      const firstApprovedAppointment = normalizeAppointment(
+      const firstUpcomingAppointment = normalizeAppointment(
         appointment.toPublic(),
       );
 
       return {
         salon: populatedSalon.toPublic(),
-        firstApprovedAppointment,
+        firstUpcomingAppointment,
       };
     }
 

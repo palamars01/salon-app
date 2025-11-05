@@ -1,7 +1,6 @@
 import {
   IsEmail,
   IsNotEmpty,
-  IsMobilePhone,
   IsEnum,
   MinLength,
   IsOptional,
@@ -38,14 +37,6 @@ export class SignupDTO implements Signup {
     {},
     { groups: [AuthProvidersEnum.EMAIL], message: 'Email is not valid' },
   )
-  @IsMobilePhone(
-    undefined,
-    {},
-    {
-      groups: [AuthProvidersEnum.PHONE],
-      message: 'Phone number format is not valid',
-    },
-  )
   authValue: string;
 
   @ValidateIf((o) => Object.keys(o).includes('fName'))
@@ -56,4 +47,11 @@ export class SignupDTO implements Signup {
   @IsOptional()
   @IsString()
   lName?: string | undefined;
+
+  country?: string;
+
+  phone?: {
+    dialCode: string;
+    number: string;
+  };
 }

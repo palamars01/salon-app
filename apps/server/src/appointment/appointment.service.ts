@@ -52,15 +52,20 @@ export class AppointmentService {
       /* Save user name and phone */
       user.fName = appointmentDTO?.fName || user.fName;
       user.phone = appointmentDTO.phone;
+      user.country = appointmentDTO.country;
+
       await user.save();
     }
-
+    const appointmentData = {
+      ...appointmentDTO,
+      phone: appointmentDTO.phone?.dialCode + appointmentDTO.phone?.number,
+    };
     const { salon } = await this.salonService.findById(appointmentDTO.salon);
 
     if (salon) {
       /* Create appointment */
       const appointment = await this.appointmentModel.create({
-        ...appointmentDTO,
+        ...appointmentData,
         customer: user.id,
         status: AppointmentStatusEnum.approved,
         salon: {

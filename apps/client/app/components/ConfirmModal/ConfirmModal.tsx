@@ -1,4 +1,4 @@
-import { ChangeEvent } from 'react';
+import { ChangeEvent, FormEvent } from 'react';
 import { Box, Modal, Typography } from '@mui/material';
 
 import { BaseTextInput } from '../BaseInput/BaseTextInput';
@@ -6,16 +6,30 @@ import { BaseTextInput } from '../BaseInput/BaseTextInput';
 import { MainButton } from '@/components/Button/Button';
 
 import styles from './confirmModal.module.scss';
+import { PhoneInput } from '../Auth';
+import { SubmitButton } from '../SubmitButton/SubmitButton';
 
 interface Props {
   open: boolean;
   handleClose: () => void;
-  handleSubmit: () => Promise<void>;
+  handleSubmit: (e: FormEvent<HTMLFormElement>) => Promise<void>;
   type: 'appointmentCreate' | 'appointmentDelete';
-  userAppointmentData?: {
+  userData: {
     fName?: string;
-    phone?: string;
+    phone?: {
+      dialCode: string;
+      number: string;
+    };
+    country?: string;
   };
+  appointmentData: {
+    fName?: string;
+    phone?: {
+      dialCode: string;
+      number: string;
+    };
+  };
+
   handleChangeUserAppointmentData?: (e: ChangeEvent<HTMLInputElement>) => void;
   isFNameExists?: boolean;
 }
@@ -25,17 +39,25 @@ export function ConfirmModal({
   handleClose,
   handleSubmit,
   type,
-  userAppointmentData,
+  userData,
+  appointmentData,
   handleChangeUserAppointmentData,
   isFNameExists,
+  //   country,
 }: Props) {
   const title =
     type === 'appointmentCreate'
       ? 'Confirm Services?'
       : 'Are you sure you want to leave the queue?';
+
   return (
     <Modal open={open} onClose={handleClose} className={styles.modal}>
-      <Box className={styles.container} component="form" noValidate>
+      <Box
+        className={styles.container}
+        component="form"
+        onSubmit={handleSubmit}
+        noValidate
+      >
         <Typography className={styles.title}>{title}</Typography>
         {type === 'appointmentCreate' && (
           <Box sx={{ display: 'flex', flexDirection: 'column', gap: '10px' }}>
@@ -43,7 +65,7 @@ export function ConfirmModal({
               label="First Name"
               type="text"
               disabled={isFNameExists}
-              value={userAppointmentData?.fName}
+              value={appointmentData.fName || userData?.fName}
               inputProps={{
                 name: 'fName',
                 placeholder: 'First Name',
@@ -53,20 +75,7 @@ export function ConfirmModal({
                 id: 'fName',
               }}
             />
-            <BaseTextInput
-              label="Phone Number"
-              type="text"
-              value={userAppointmentData?.phone}
-              inputProps={{
-                name: 'phone',
-                placeholder: 'Phone',
-                pattern: '[0-9]',
-                minLength: 9,
-                required: true,
-                onChange: handleChangeUserAppointmentData,
-                id: 'phone',
-              }}
-            />
+            <PhoneInput phone={userData?.phone} country={userData.country} />
           </Box>
         )}
 
@@ -75,7 +84,7 @@ export function ConfirmModal({
             title="No"
             buttonProps={{ variant: 'outlined', onClick: handleClose }}
           />
-          <MainButton title="Yes" buttonProps={{ onClick: handleSubmit }} />
+          <SubmitButton title="Yes" />
         </Box>
       </Box>
     </Modal>

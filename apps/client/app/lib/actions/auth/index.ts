@@ -14,7 +14,7 @@ import { PublicUser } from '@repo/shared/interfaces/user';
 import { config } from '@/config/config';
 
 export const signup = async (formData: FormData) => {
-  const signupData: Signup = {
+  const signupData: Signup & { country?: string } = {
     authProvider: formData.get('authProvider') as AuthProvidersEnum,
     role: formData.get('role') as SignupRole,
     password: formData.get('password')!.toString(),
@@ -29,11 +29,16 @@ export const signup = async (formData: FormData) => {
 
   if (signupData.authProvider === AuthProvidersEnum.PHONE) {
     const dialCode = formData.get('dialCode')!.toString()!;
-    signupData.authValue = dialCode + signupData.authValue;
+    signupData.authValue = signupData.authValue;
+    signupData.country = formData.get('country')!.toString()!;
+    signupData.phone = {
+      dialCode: dialCode,
+      number: signupData.authValue,
+    };
   }
 
   const { data, errors } = await withFetch<
-    Signup,
+    Signup & { country?: string },
     { user: PublicUser; jwtTokens: JwtTokens }
   >({
     api: ApiRoutes.auth.signup,
@@ -52,7 +57,7 @@ export const signin = async (formData: FormData) => {
 
   if (authProvider === AuthProvidersEnum.PHONE) {
     const dialCode = formData.get('dialCode')!.toString()!;
-    signinData.authValue = dialCode + signinData.authValue;
+    signinData.authValue = '+' + dialCode + signinData.authValue;
   }
 
   try {

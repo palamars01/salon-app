@@ -67,7 +67,7 @@ export const withFetch = async <Body, ApiResponse>(
   const data: Response<ApiResponse & { jwtTokens?: JwtTokens }> =
     await response.json();
 
-  if (jwtTokens && !data.data.jwtTokens && !parameters.isClient) {
+  if (jwtTokens && !data.data?.jwtTokens && !parameters.isClient) {
     data.data.jwtTokens = jwtTokens;
   }
 
@@ -97,8 +97,9 @@ export const checkRolePermission = async (roles: RolesEnum[]) => {
     userId: session?.user.id,
     privateWorkerId: session?.user.privateWorkerId,
     fName: session?.user.fName || '',
-    phone: session?.user.phone || '',
+    phone: session?.user.phone,
     notificationsSettings: session?.user.notificationsSettings,
+    country: session?.user.country,
   };
 };
 
@@ -121,6 +122,7 @@ export const handleResponseWithSessionUpdate = async (
       lName: user.lName,
       phone: user.phone,
       notificationsSettings: user.notificationsSettings,
+      country: user.country,
     };
   }
 

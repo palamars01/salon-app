@@ -4,6 +4,11 @@ import {
   RolesEnum,
 } from "../../enums/index.js";
 
+export interface PhoneNumber {
+  dialCode: string;
+  number: string;
+}
+
 export interface User {
   authProvider: AuthProvidersEnum;
 
@@ -19,9 +24,11 @@ export interface User {
 
   lName?: string;
 
-  phone?: string;
+  phone?: PhoneNumber;
 
   privateWorkerId?: string;
+
+  country?: string;
 
   notificationsSettings: {
     sms: boolean;

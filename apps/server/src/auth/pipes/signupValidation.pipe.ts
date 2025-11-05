@@ -5,15 +5,25 @@ import { plainToInstance } from 'class-transformer';
 
 import { SignupDTO } from '../dto/signup.dto';
 import { AuthProvidersEnum } from '@repo/shared/enums';
+import { phoneNumberValidation } from '@/validations/phoneNumber.validation';
 
 export class SignupValidationPipe implements PipeTransform {
   async transform(signupDto: SignupDTO) {
     const signupDTO = plainToInstance(SignupDTO, signupDto);
     const { authProvider, authValue } = signupDTO;
+    let phoneNumberValidationError = '';
 
     // Remove non-numeric characters
     if (authProvider === AuthProvidersEnum.PHONE) {
-      signupDTO.authValue = authValue.replace(/\D/g, '');
+      signupDTO.authValue =
+        '+' + signupDTO.phone?.dialCode + authValue.replace(/\D/g, '');
+      const isPhoneNumberValid = signupDTO.authValue.match(
+        phoneNumberValidation[signupDTO.country!].regExp,
+      );
+
+      if (!isPhoneNumberValid) {
+        phoneNumberValidationError = 'Phone number format is not valid';
+      }
     }
 
     // Validate
@@ -23,17 +33,17 @@ export class SignupValidationPipe implements PipeTransform {
     });
 
     // Group error messages
-    if (res.length) {
+    if (res.length || phoneNumberValidationError) {
       const errors = res.map(
         ({ constraints }) => Object.values(constraints!)[0],
       );
+
+      if (phoneNumberValidationError)
+        errors.unshift(phoneNumberValidationError);
+
       throw new BadRequestException({ errors });
     }
-    const phone =
-      signupDTO.authProvider === AuthProvidersEnum.PHONE
-        ? signupDTO.authValue
-        : null;
 
-    return { ...signupDTO, phone };
+    return signupDTO;
   }
 }

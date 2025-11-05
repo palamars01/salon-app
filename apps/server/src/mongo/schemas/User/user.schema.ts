@@ -35,11 +35,23 @@ export class User extends Document implements UserSchema {
   password?: string;
 
   @Prop()
+  country?: string;
+
+  @Prop()
   tempPassword?: string;
   @Prop()
   privateWorkerId?: string;
-  @Prop()
-  phone?: string;
+  @Prop({
+    type: {
+      dialCode: String,
+      number: String,
+    },
+    _id: false,
+  })
+  phone?: {
+    dialCode: string;
+    number: string;
+  };
 
   @Prop({ enum: RolesEnum })
   role: RolesEnum;

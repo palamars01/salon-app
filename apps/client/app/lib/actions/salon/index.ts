@@ -65,8 +65,7 @@ export const getSalonDashboard = async (salonId: string) => {
     null,
     {
       salon: PublicSalon;
-      firstApprovedAppointment: DashboardAppointment;
-      firstUpcomingAppointment: null;
+      firstUpcomingAppointment: DashboardAppointment;
     }
   >({
     api: ApiRoutes.salons.getSalonDashboard.getOptions(salonId),

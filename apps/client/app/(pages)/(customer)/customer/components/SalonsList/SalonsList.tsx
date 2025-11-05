@@ -1,5 +1,5 @@
 'use client';
-import { ChangeEvent, useEffect, useState } from 'react';
+import { ChangeEvent, FormEvent, useEffect, useState } from 'react';
 import { Box, IconButton } from '@mui/material';
 import { toast } from 'react-toastify';
 
@@ -23,7 +23,11 @@ import styles from './salonsList.module.scss';
 interface Props {
   userData: {
     fName?: string;
-    phone?: string;
+    phone?: {
+      dialCode: string;
+      number: string;
+    };
+    country?: string;
   };
   salonList: CustomerDashboardSalon[];
 }
@@ -84,15 +88,22 @@ export function SalonsList({ userData, salonList }: Props) {
     setSelectedServices(updatedServicesId);
   };
 
-  const handleCreateAppointment = async () => {
+  const handleCreateAppointment = async (e: FormEvent<HTMLFormElement>) => {
+    e.preventDefault();
+    const formData = new FormData(e.currentTarget);
     if (selectedSalon && selectedServices.length) {
       const appointment = {
         salon: selectedSalon.id!,
         services: selectedServices,
         privateWorkerId: selectedSalon?.privateWorkerId,
-        phone: userAppointmentData.phone,
+        phone: {
+          dialCode: formData.get('dialCode')!.toString()!,
+          number: formData.get('authValue')!.toString(),
+        },
+        country: formData.get('country')!.toString()!,
         fName: userAppointmentData.fName,
       };
+
       const { data, errors } = await createAppointment(appointment);
 
       if (data?.appointment.id) {
@@ -245,7 +256,12 @@ export function SalonsList({ userData, salonList }: Props) {
           }}
           handleSubmit={handleCreateAppointment}
           type="appointmentCreate"
-          userAppointmentData={userAppointmentData}
+          userData={{
+            fName: userData.fName,
+            phone: userData.phone,
+            country: userData.country,
+          }}
+          appointmentData={userAppointmentData}
           handleChangeUserAppointmentData={handleChangeUserAppointmentData}
           isFNameExists={!!userData.fName}
         />

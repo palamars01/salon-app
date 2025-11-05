@@ -12,6 +12,11 @@ export interface Signup {
   role?: SignupRole;
   fName?: string;
   lName?: string;
+  country?: string;
+  phone?: {
+    dialCode: String;
+    number: string;
+  };
 }
 
 export type Signin = Pick<Signup, "authValue" | "password">;

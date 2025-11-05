@@ -32,7 +32,7 @@ export default async function SalonDashboard({ params }: Props) {
 
   const { data } = await getSalonDashboard(id);
 
-  const { salon, firstApprovedAppointment } = data;
+  const { salon, firstUpcomingAppointment } = data;
 
   return (
     <Box className={styles.container}>
@@ -64,7 +64,7 @@ export default async function SalonDashboard({ params }: Props) {
         />
       </Box>
       <WidgetList salon={salon} />
-      {firstApprovedAppointment && (
+      {firstUpcomingAppointment && (
         <Box className={styles.queue}>
           <ListHeader
             title="Customers In Queue"
@@ -76,7 +76,7 @@ export default async function SalonDashboard({ params }: Props) {
             }}
           />
           <QueueCard
-            appointment={firstApprovedAppointment}
+            appointment={firstUpcomingAppointment}
             pathToRevalidate={APP_ROUTES.SALON.DASHBOARD(id)}
           />
         </Box>

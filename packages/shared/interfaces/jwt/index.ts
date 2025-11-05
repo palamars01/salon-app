@@ -12,7 +12,11 @@ export interface JwtPayload {
   privateWorkerId?: string;
   fName?: string;
   lName?: string;
-  phone?: string;
+  phone?: {
+    dialCode: string;
+    number: string;
+  };
+  country?: string;
 }
 
 export type JwtTokens = {

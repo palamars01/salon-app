@@ -17,8 +17,12 @@ export const createAppointment = async (
     Appointment,
     'services' | ('privateWorkerId' & { salon: string })
   > & {
-    phone?: string;
+    phone?: {
+      dialCode: string;
+      number: string;
+    };
     fName?: string;
+    country?: string;
   },
 ) => {
   const { data, errors } = await withFetch<
@@ -37,6 +41,7 @@ export const createAppointment = async (
         user: Object.assign(payload.user, {
           phone: body.phone,
           fName: body.fName || payload.user.fName,
+          country: body.country || payload.user.country,
         }),
         jwtTokens: payload?.jwtTokens,
       });

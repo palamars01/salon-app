@@ -1,7 +1,6 @@
 import {
   ArrayMinSize,
   IsArray,
-  IsMobilePhone,
   IsNotEmpty,
   IsObject,
   IsString,
@@ -24,18 +23,17 @@ export class AppointmentDTO {
   @IsString()
   privateWorkerId: string;
 
-  @IsMobilePhone(
-    undefined,
-    {},
-    {
-      message: 'Phone number format is not valid',
-    },
-  )
-  phone: string;
   @ValidateIf((o) => Object.keys(o).includes('fName'))
   @MinLength(3, {
     message: 'First name be at least 2 characters',
   })
   @IsNotEmpty({ message: 'First name is required' })
   fName: string;
+
+  country?: string;
+  @IsNotEmpty()
+  phone: {
+    dialCode: string;
+    number: string;
+  };
 }
